@@ -28,8 +28,32 @@ const newMajorityElement = (nums) => {
         else{
             count--
         }
+
+        
     }
     return candidate
 }
 
-console.log(majorityElement([2,2,1,1,1,2,2]));
+var majorityElement2 = function(nums) {
+  let candidate = null;  // ứng viên hiện tại
+  let count = 0;         // số phiếu cho ứng viên đó
+
+  for (let num of nums) {
+    if (count === 0) {
+      // nếu không còn ứng viên → chọn num hiện tại làm ứng viên mới
+      candidate = num;
+      count = 1;
+    } else if (num === candidate) {
+      // nếu num == ứng viên → tăng phiếu
+      count++;
+    } else {
+      // nếu num khác ứng viên → giảm phiếu
+      count--;
+    }
+  }
+
+  // theo đề: majority element luôn tồn tại → candidate chắc chắn là kết quả
+  return candidate;
+};
+
+console.log(majorityElement2([2,2,1,1,1,3,3]));
